@@ -1,4 +1,4 @@
-# Shubhika — Tarot · Astrology · Healing
+# Vedastro.ai — Tarot · Astrology · Healing
 
 Marketing site. Vite + React + TypeScript + Tailwind. Fully static — no backend, no database.
 

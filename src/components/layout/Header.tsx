@@ -42,7 +42,9 @@ export function Header() {
         <a href="#home" className="flex items-center gap-2.5" aria-label={`${site.name} — home`}>
           <BrandMark className="h-9 w-9 text-gold" />
           <span className="flex flex-col leading-none">
-            <span className="font-display text-[1.4rem] font-semibold text-plum">{site.name}</span>
+            <span className="font-display text-[1.4rem] font-semibold text-plum">
+              Vedastro<span className="text-gold-deep">.ai</span>
+            </span>
             <span className="mt-1 hidden whitespace-nowrap text-[0.52rem] font-medium uppercase tracking-[0.2em] text-gold-deep sm:block">
               {site.descriptor}
             </span>
@@ -120,7 +122,9 @@ export function Header() {
           <div className="mb-5 flex items-center justify-between">
             <span className="flex items-center gap-2">
               <BrandMark className="h-8 w-8 text-gold" />
-              <span className="font-display text-xl font-semibold text-plum">{site.name}</span>
+              <span className="font-display text-xl font-semibold text-plum">
+                Vedastro<span className="text-gold-deep">.ai</span>
+              </span>
             </span>
             <button
               type="button"

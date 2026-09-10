@@ -1,11 +1,11 @@
 /** Global brand + contact constants. */
 export const site = {
-  name: 'Shubhika',
+  name: 'Vedastro.ai',
   descriptor: 'Tarot • Astrology • Healing',
-  tagline: 'Find Clarity When Life Feels Uncertain.',
+  tagline: 'Know Your Stars. Transform Your Life.',
   whatsappNumber: '917096165142',
   whatsappDisplay: '+91 70961 65142',
-  email: 'hello@shubhika.com',
+  email: 'hello@vedastro.ai',
 } as const;
 
 /** Build a wa.me deep link with a prefilled message. */
