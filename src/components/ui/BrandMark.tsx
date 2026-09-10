@@ -1,22 +1,15 @@
 import { cn } from '@/lib/cn';
 import { site } from '@/data/site';
 
-/**
- * Brand mark — the circular celestial emblem cropped out of the full logo
- * lockup at /images/brand/logo.png. Replace that file with a dedicated
- * square mark to drop the background-position tuning.
- */
+/** The Vedastro.ai celestial emblem (cropped square from the full logo). */
 export function BrandMark({ className }: { className?: string }) {
   return (
-    <span
-      role="img"
-      aria-label={site.name}
-      className={cn('block shrink-0 rounded-full bg-no-repeat', className)}
-      style={{
-        backgroundImage: 'url(/images/brand/logo.png)',
-        backgroundSize: '270%',
-        backgroundPosition: '50% 16%',
-      }}
+    <img
+      src="/images/brand/logo-mark.png"
+      alt={site.name}
+      width={512}
+      height={512}
+      className={cn('block shrink-0 rounded-full object-cover', className)}
     />
   );
 }

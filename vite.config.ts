@@ -10,10 +10,10 @@ export default defineConfig({
   },
   server: {
     watch: {
-      // public/images/ gets big files dropped in mid-copy — ignore to avoid the
-      // Windows EBUSY crash. assets/images/proof/ IS watched so new client
-      // screenshots show up live via HMR.
-      ignored: ['**/public/images/**'],
+      // Wait for images to finish copying before reacting — stops the Windows
+      // EBUSY crash when large files are dropped into public/images or assets/
+      // while the dev server is running.
+      awaitWriteFinish: { stabilityThreshold: 400, pollInterval: 100 },
     },
   },
   resolve: {

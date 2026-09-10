@@ -40,7 +40,7 @@ export function Header() {
       <div className="container-page flex h-16 items-center justify-between gap-6">
         {/* Brand */}
         <a href="#home" className="flex items-center gap-2.5" aria-label={`${site.name} — home`}>
-          <BrandMark className="h-9 w-9 text-gold" />
+          <BrandMark className="h-9 w-9" />
           <span className="flex flex-col leading-none">
             <span className="font-display text-[1.4rem] font-semibold text-plum">
               Vedastro<span className="text-gold-deep">.ai</span>
@@ -121,7 +121,7 @@ export function Header() {
         >
           <div className="mb-5 flex items-center justify-between">
             <span className="flex items-center gap-2">
-              <BrandMark className="h-8 w-8 text-gold" />
+              <BrandMark className="h-8 w-8" />
               <span className="font-display text-xl font-semibold text-plum">
                 Vedastro<span className="text-gold-deep">.ai</span>
               </span>

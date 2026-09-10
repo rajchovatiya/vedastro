@@ -17,9 +17,7 @@ export function JourneyCTA() {
         ref={ref}
         className="reveal container-page flex flex-col items-center gap-5 py-9 text-center md:flex-row md:justify-center md:gap-8 md:py-10 md:text-left"
       >
-        <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-gold-tint text-gold">
-          <BrandMark className="h-7 w-7" />
-        </span>
+        <BrandMark className="h-12 w-12 shrink-0" />
 
         <div>
           <h2 className="text-[1.7rem] leading-tight sm:text-[2rem]">
