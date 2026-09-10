@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/cn';
 import { useScrolled } from '@/hooks/useScrolled';
@@ -7,6 +8,49 @@ import { navItems } from '@/data/nav';
 import { site, whatsappLink } from '@/data/site';
 import { Button } from '@/components/ui/Button';
 import { BrandMark } from '@/components/ui/BrandMark';
+
+/** Nav link that smooth-scrolls for `/#id` on the homepage and routes otherwise. */
+function NavLink({
+  href,
+  className,
+  onNavigate,
+  children,
+}: {
+  href: string;
+  className?: string;
+  onNavigate?: () => void;
+  children: ReactNode;
+}) {
+  const { pathname } = useLocation();
+
+  if (href.startsWith('/#')) {
+    return (
+      <a
+        href={href}
+        className={className}
+        onClick={(e) => {
+          onNavigate?.();
+          if (pathname === '/') {
+            e.preventDefault();
+            window.history.replaceState(null, '', href);
+            // let the drawer close / scroll-lock lift first
+            setTimeout(
+              () => document.getElementById(href.slice(2))?.scrollIntoView({ behavior: 'smooth' }),
+              60,
+            );
+          }
+        }}
+      >
+        {children}
+      </a>
+    );
+  }
+  return (
+    <Link to={href} className={className} onClick={onNavigate}>
+      {children}
+    </Link>
+  );
+}
 
 function WhatsappGlyph({ className }: { className?: string }) {
   return (
@@ -19,7 +63,11 @@ function WhatsappGlyph({ className }: { className?: string }) {
 export function Header() {
   const scrolled = useScrolled(8);
   const { open } = useBooking();
+  const { pathname } = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const isActive = (href: string) =>
+    (href === '/' && pathname === '/') || (href !== '/' && !href.startsWith('/#') && pathname === href);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
@@ -39,7 +87,7 @@ export function Header() {
     >
       <div className="container-page flex h-16 items-center justify-between gap-6">
         {/* Brand */}
-        <a href="#home" className="flex items-center gap-2.5" aria-label={`${site.name} — home`}>
+        <Link to="/" className="flex items-center gap-2.5" aria-label={`${site.name} — home`}>
           <BrandMark className="h-9 w-9" />
           <span className="flex flex-col leading-none">
             <span className="font-display text-[1.4rem] font-semibold text-plum">
@@ -49,22 +97,22 @@ export function Header() {
               {site.descriptor}
             </span>
           </span>
-        </a>
+        </Link>
 
         {/* Center nav */}
         <nav className="hidden items-center gap-8 lg:flex">
-          {navItems.map((item, i) => (
-            <a
+          {navItems.map((item) => (
+            <NavLink
               key={item.href}
               href={item.href}
               className={cn(
                 'relative py-1 text-[0.85rem] font-medium text-plum-soft transition-colors hover:text-plum',
-                i === 0 &&
+                isActive(item.href) &&
                   'text-plum after:absolute after:-bottom-0.5 after:left-0 after:h-[2px] after:w-full after:rounded-full after:bg-gold',
               )}
             >
               {item.label}
-            </a>
+            </NavLink>
           ))}
         </nav>
 
@@ -136,14 +184,17 @@ export function Header() {
             </button>
           </div>
           {navItems.map((item) => (
-            <a
+            <NavLink
               key={item.href}
               href={item.href}
-              className="rounded-xl px-3 py-3 text-[0.95rem] font-medium text-plum-soft transition-colors hover:bg-gold-tint/60 hover:text-plum"
-              onClick={() => setMenuOpen(false)}
+              onNavigate={() => setMenuOpen(false)}
+              className={cn(
+                'rounded-xl px-3 py-3 text-[0.95rem] font-medium transition-colors hover:bg-gold-tint/60 hover:text-plum',
+                isActive(item.href) ? 'text-plum' : 'text-plum-soft',
+              )}
             >
               {item.label}
-            </a>
+            </NavLink>
           ))}
           <Button
             className="mt-5 w-full"

@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { BookingProvider } from '@/components/booking/BookingProvider';
 import { BookingModal } from '@/components/booking/BookingModal';
 import { HomePage } from '@/pages/HomePage';
+import { ReviewsPage } from '@/pages/ReviewsPage';
 import { StyleGuide } from '@/pages/StyleGuide';
 import { NotFound } from '@/pages/NotFound';
 
@@ -11,6 +12,7 @@ export default function App() {
       <BookingProvider>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/reviews" element={<ReviewsPage />} />
           <Route path="/style-guide" element={<StyleGuide />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

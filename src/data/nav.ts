@@ -1,10 +1,9 @@
 export type NavItem = { label: string; href: string };
 
+/** Only links that actually go somewhere. `/#id` scrolls to a homepage section. */
 export const navItems: NavItem[] = [
-  { label: 'Home', href: '#home' },
-  { label: 'Tarot', href: '#tarot' },
-  { label: 'Astrology', href: '#astrology' },
-  { label: 'Spells', href: '#spells' },
-  { label: 'Reviews', href: '#reviews' },
-  { label: 'About', href: '#about' },
+  { label: 'Home', href: '/' },
+  { label: 'Tarot', href: '/#tarot' },
+  { label: 'Spells', href: '/#spells' },
+  { label: 'Reviews', href: '/reviews' },
 ];
