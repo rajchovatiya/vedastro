@@ -1,0 +1,276 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   DESIGN TOKENS  (single source of truth — Tailwind maps these)
+   Colours stored as space-separated RGB channels so that
+   Tailwind alpha modifiers (border-gold/20) resolve correctly.
+   ============================================================ */
+:root {
+  color-scheme: light;
+
+  /* Palette */
+  --c-ivory: 255 253 248; /* #FFFDF8  Warm Ivory   — page base            */
+  --c-cream: 248 241 227; /* #F8F1E3  Soft Cream    — alt sections / tints */
+  --c-gold: 217 169 40; /*   #D9A928  Premium Gold  — primary accent       */
+  --c-champagne: 232 201 106; /* #E8C96A Champagne Gold — soft accent/border */
+  --c-gold-deep: 169 120 26; /* #A9781A  gold for text on light (AA)       */
+  --c-gold-tint: 244 233 204; /* #F4E9CC  medallion / chip wash            */
+  --c-plum: 36 21 47; /*        #24152F  Deep Plum     — headings           */
+  --c-plum-soft: 87 74 97; /*   #574A61  muted headings / nav              */
+  --c-charcoal: 41 37 42; /*    #29252A  Charcoal      — strong text        */
+  --c-body: 70 65 74; /*        #46414A  paragraph text                     */
+  --c-line: 236 224 198; /*     #ECE0C6  warm hairline border               */
+  --c-sage: 95 122 91; /*       #5F7A5B  success / trust indicators ONLY    */
+  --c-blush: 247 237 230; /*    #F7EDE6  soft warm band (spiritual section)  */
+
+  /* Structure */
+  --container-max: 1320px;
+  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+  /* distance from a container edge to the viewport edge (padding + centering margin) */
+  --bleed: calc(max(0px, (100vw - var(--container-max)) / 2) + var(--gutter));
+  /* announcement bar (36px) + navbar (64px + 1px border) — hero fills the rest of viewport 1 */
+  --top-chrome: 101px;
+  --radius-card: 18px;
+  --radius-btn: 9999px;
+  --section-y: clamp(1.75rem, 3.4vw, 2.85rem);
+  --section-y-sm: clamp(1.4rem, 2.4vw, 2rem);
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+@layer base {
+  * {
+    @apply border-line;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-ivory font-sans text-base text-body antialiased;
+    font-weight: 400;
+    font-synthesis: none;
+  }
+
+  /* Editorial serif for all major headings */
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display text-plum;
+    font-weight: 700;
+  }
+
+  h1 {
+    @apply text-h1;
+  }
+  h2 {
+    @apply text-h2;
+  }
+  h3 {
+    @apply text-h3;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+
+  ::selection {
+    background: rgb(var(--c-champagne) / 0.55);
+    color: rgb(var(--c-plum));
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--c-gold));
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Tame heavy scrollbars on light bg */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--c-champagne) / 0.5);
+    border-radius: 9999px;
+  }
+}
+
+/* ============================================================
+   COMPONENT TOKENS  (reusable classes)
+   ============================================================ */
+@layer components {
+  /* --- Layout --- */
+  .container-page {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  /* left padding that aligns a full-bleed row's content with the page container */
+  .pad-container-left {
+    padding-left: max(
+      var(--gutter),
+      calc((100vw - var(--container-max)) / 2 + var(--gutter))
+    );
+  }
+  .pad-container-right {
+    padding-right: max(
+      var(--gutter),
+      calc((100vw - var(--container-max)) / 2 + var(--gutter))
+    );
+  }
+
+  /* stretch a block past the container to the viewport edge on wide screens */
+  .bleed-right {
+    margin-right: calc(-1 * var(--bleed));
+    width: calc(100% + var(--bleed));
+    max-width: none;
+  }
+  .bleed-left {
+    margin-left: calc(-1 * var(--bleed));
+    width: calc(100% + var(--bleed));
+    max-width: none;
+  }
+
+  .section {
+    padding-block: var(--section-y);
+  }
+  .section-sm {
+    padding-block: var(--section-y-sm);
+  }
+  /* legacy alias kept so existing sections keep compiling */
+  .section-pad {
+    padding-block: var(--section-y);
+  }
+
+  /* --- Typography scale --- */
+  .display {
+    @apply font-display text-display text-plum;
+    font-weight: 700;
+  }
+  .heading-1 {
+    @apply font-display text-h1 text-plum;
+    font-weight: 700;
+  }
+  .heading-2 {
+    @apply font-display text-h2 text-plum;
+    font-weight: 700;
+  }
+  .heading-3 {
+    @apply font-display text-h3 text-plum;
+    font-weight: 700;
+  }
+  .body-lg {
+    @apply font-sans text-lead text-body;
+  }
+  .body-text {
+    @apply font-sans text-base text-body;
+  }
+  .caption {
+    @apply font-sans text-caption text-body/80;
+  }
+  .eyebrow {
+    @apply font-sans uppercase text-label font-medium text-gold-deep;
+  }
+
+  /* --- Cards --- */
+  .card {
+    @apply rounded-card border border-gold/30 bg-white shadow-card;
+    transition:
+      transform 0.4s var(--ease-premium),
+      box-shadow 0.4s var(--ease-premium),
+      border-color 0.4s var(--ease-premium);
+  }
+  .card-cream {
+    @apply card bg-cream;
+  }
+  .card-interactive:hover {
+    @apply -translate-y-1.5 border-gold/35 shadow-card-hover;
+  }
+  .card-featured {
+    @apply border-2 border-gold shadow-card-hover;
+  }
+  .gold-border {
+    @apply border border-gold/25;
+  }
+  .hairline {
+    @apply border-line;
+  }
+
+  /* --- Buttons --- */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-btn font-sans text-btn font-medium;
+    transition:
+      transform 0.2s var(--ease-premium),
+      box-shadow 0.2s var(--ease-premium),
+      background-color 0.2s var(--ease-premium),
+      border-color 0.2s var(--ease-premium),
+      color 0.2s var(--ease-premium);
+  }
+  .btn:disabled {
+    @apply cursor-not-allowed opacity-55;
+  }
+  .btn-sm {
+    @apply h-10 px-5 text-[0.82rem];
+  }
+  .btn-md {
+    @apply h-12 px-7;
+  }
+  .btn-lg {
+    @apply h-[3.35rem] px-8 text-[0.95rem];
+  }
+
+  .btn-primary {
+    @apply btn bg-gold text-white shadow-gold-glow;
+  }
+  .btn-primary:hover {
+    @apply -translate-y-0.5 bg-gold-deep;
+  }
+
+  .btn-secondary {
+    @apply btn border border-gold/50 bg-white/70 text-gold-deep;
+  }
+  .btn-secondary:hover {
+    @apply -translate-y-0.5 border-gold bg-gold-tint;
+  }
+
+  .btn-ghost {
+    @apply btn text-gold-deep;
+  }
+  .btn-ghost:hover {
+    @apply bg-gold-tint/60;
+  }
+}
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .transition-premium {
+    transition-timing-function: var(--ease-premium);
+  }
+  .hover-lift {
+    transition: transform 0.35s var(--ease-premium), box-shadow 0.35s var(--ease-premium);
+  }
+  .hover-lift:hover {
+    transform: translateY(-4px);
+  }
+}

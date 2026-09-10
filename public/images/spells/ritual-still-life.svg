@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="900" viewBox="0 0 520 900" fill="none" role="img" aria-label="Placeholder — warm ritual still life with candles and flowers">
+  <defs>
+    <linearGradient id="sb" x1="0" y1="0" x2="0.5" y2="1">
+      <stop offset="0" stop-color="#F7EAE1"/>
+      <stop offset="0.5" stop-color="#F1DCCF"/>
+      <stop offset="1" stop-color="#E7C9B6"/>
+    </linearGradient>
+    <radialGradient id="sg" cx="0.6" cy="0.4" r="0.6">
+      <stop offset="0" stop-color="#FFF4E4" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#FFF4E4" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="sflame" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#E4952A"/><stop offset="1" stop-color="#FBE199"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="520" height="900" fill="url(#sb)"/>
+  <ellipse cx="300" cy="380" rx="360" ry="380" fill="url(#sg)"/>
+
+  <!-- tall pillar candle -->
+  <g transform="translate(300 470)">
+    <rect x="-58" y="0" width="116" height="300" rx="20" fill="#F3E4C8" stroke="#CBAE7E" stroke-width="3"/>
+    <ellipse cx="0" cy="0" rx="58" ry="16" fill="#FBEFD6" stroke="#CBAE7E" stroke-width="2"/>
+    <path d="M0 -84c26 26 26 56 0 84-26-24-26-58 0-84Z" fill="url(#sflame)"/>
+    <ellipse cx="0" cy="-30" rx="66" ry="54" fill="#FBE7B4" fill-opacity="0.45"/>
+  </g>
+
+  <!-- shorter candle -->
+  <g transform="translate(150 560)">
+    <rect x="-40" y="0" width="80" height="200" rx="16" fill="#F3E4C8" stroke="#CBAE7E" stroke-width="3"/>
+    <path d="M0 -60c19 19 19 40 0 60-19-17-19-38 0-60Z" fill="url(#sflame)"/>
+    <ellipse cx="0" cy="-22" rx="46" ry="38" fill="#FBE7B4" fill-opacity="0.4"/>
+  </g>
+
+  <!-- brass bowl -->
+  <g transform="translate(420 690)">
+    <ellipse cx="0" cy="0" rx="82" ry="24" fill="#C79A54" fill-opacity="0.55"/>
+    <path d="M-70 0c10 44 130 44 140 0 6 26 -14 56 -70 56s-76 -30 -70 -56Z" fill="#CFA968" stroke="#A9812F" stroke-width="3"/>
+  </g>
+
+  <!-- incense sticks -->
+  <g stroke="#A9812F" stroke-width="3" stroke-linecap="round">
+    <line x1="470" y1="640" x2="452" y2="440"/>
+    <line x1="486" y1="642" x2="500" y2="452"/>
+  </g>
+  <g fill="#B98A2E">
+    <circle cx="452" cy="440" r="4"/><circle cx="500" cy="452" r="4"/>
+  </g>
+
+  <!-- flowers / botanical -->
+  <g fill="#F0E6D3" stroke="#C9B48C" stroke-width="1.5">
+    <circle cx="120" cy="760" r="16"/><circle cx="150" cy="748" r="12"/><circle cx="96" cy="746" r="11"/>
+    <circle cx="360" cy="800" r="14"/><circle cx="388" cy="790" r="10"/>
+  </g>
+  <g stroke="#9FB27C" stroke-width="3" fill="none" stroke-linecap="round">
+    <path d="M120 776 q-20 40 -70 56 M150 760 q30 30 70 40"/>
+  </g>
+
+  <!-- faint gold sparks -->
+  <g fill="#C79A3F" fill-opacity="0.4">
+    <circle cx="220" cy="180" r="3"/><circle cx="380" cy="150" r="2.5"/><circle cx="300" cy="90" r="3"/>
+  </g>
+
+  <text x="260" y="870" text-anchor="middle" font-family="Poppins, system-ui, sans-serif" font-size="15" letter-spacing="2" fill="#9A6E30" fill-opacity="0.55">RITUAL PHOTO  ·  /images/spells/ritual-still-life.jpg</text>
+</svg>
