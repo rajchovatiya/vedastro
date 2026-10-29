@@ -42,7 +42,9 @@ function ShareButton({ spell }: { spell: SpellWork }) {
 }
 
 function SpellBlock({ spell, index }: { spell: SpellWork; index: number }) {
-  const photos = spellPhotos[spell.id] ?? [];
+  const real = spellPhotos[spell.id] ?? [];
+  const isSample = real.length === 0;
+  const photos = isSample ? spell.samples : real;
   const [active, setActive] = useState<number | null>(null);
 
   return (
@@ -92,6 +94,11 @@ function SpellBlock({ spell, index }: { spell: SpellWork; index: number }) {
                   <span className="absolute inset-0 grid place-items-center bg-plum/0 opacity-0 transition-all duration-300 group-hover/photo:bg-plum/20 group-hover/photo:opacity-100">
                     <ZoomIn className="h-6 w-6 text-white drop-shadow" />
                   </span>
+                  {isSample && (
+                    <span className="absolute left-2 top-2 rounded-full bg-white/90 px-2 py-0.5 text-[0.62rem] font-medium uppercase tracking-wider text-plum-soft">
+                      Sample
+                    </span>
+                  )}
                 </button>
               ))
             : Array.from({ length: 4 }, (_, i) => (

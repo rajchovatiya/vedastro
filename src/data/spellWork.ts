@@ -12,6 +12,16 @@ export type SpellWork = {
   id: string;
   name: string;
   description: string;
+  /** reference pictures shown (marked "Sample") until real photos are added */
+  samples: string[];
+};
+
+// existing site images, used as stand-ins only
+const img = {
+  love: '/images/spells/love-spell.jpg',
+  bayleaf: '/images/spells/bayleaf.jpg',
+  candle: '/images/spells/candle-healing.jpg',
+  career: '/images/spells/career-job.jpg',
 };
 
 export const spellWork: SpellWork[] = [
@@ -20,60 +30,70 @@ export const spellWork: SpellWork[] = [
     name: 'Love Spell',
     description:
       'A heart-centred ritual to attract true love or deepen the bond you already share. Performed with rose, honey and candle work on an auspicious day chosen from your chart. Brings warmth, attraction and harmony back into your love life.',
+    samples: [img.love, img.candle],
   },
   {
     id: 'obsession-spell',
     name: 'Obsession Spell',
     description:
       'For when you want someone to think of you constantly and feel a strong pull towards you. This focused ritual binds their attention and emotions to you. Done with personal details and photo for the strongest connection.',
+    samples: [img.love, img.candle],
   },
   {
     id: 'ex-back-spell',
     name: 'Ex Back Spell',
     description:
       'Reunite with a lost love and heal what pulled you apart. The ritual softens anger, ego and misunderstanding on both sides. Opens the door for communication and a fresh start together.',
+    samples: [img.love, img.candle],
   },
   {
     id: 'marriage-spell',
     name: 'Marriage Spell',
     description:
       'Removes delays and blockages around marriage and brings family approval. Helps a partner commit and moves the relationship towards a wedding. Also used to bring peace and stability into an existing marriage.',
+    samples: [img.love, img.candle],
   },
   {
     id: 'money-spell',
     name: 'Money & Abundance Spell',
     description:
       'Clears money blockages and opens new channels of income. Performed with green candles, coins and abundance herbs. Helps stuck payments come through and attracts steady financial growth.',
+    samples: [img.career, img.bayleaf, img.candle],
   },
   {
     id: 'career-spell',
     name: 'Career & Job Spell',
     description:
       'For a new job, promotion or business success. Removes obstacles at the workplace and attracts the right opportunities. Builds confidence and luck for interviews and important decisions.',
+    samples: [img.career, img.bayleaf, img.candle],
   },
   {
     id: 'protection-spell',
     name: 'Protection Spell',
     description:
       'A shield against evil eye, jealousy and negative energy sent your way. Protects you, your home and your family. Recommended when you feel drained, unlucky or watched for no clear reason.',
+    samples: [img.candle, img.bayleaf],
   },
   {
     id: 'bayleaf-ritual',
     name: 'Bay Leaf Ritual',
     description:
       'A simple but powerful ritual to release negativity and manifest one clear wish. Your intention is written on bay leaves and burned under the right moon phase. Clears your path and brings fast, visible results.',
+    samples: [img.bayleaf, img.candle],
   },
   {
     id: 'candle-healing',
     name: 'Candle Healing',
     description:
       'Seven-chakra candle work to balance your energy and calm the mind. Releases stress, heaviness and emotional pain. Leaves you feeling lighter, clearer and more at peace.',
+    samples: [img.candle, img.bayleaf],
   },
   {
     id: 'success-spell',
     name: 'Success Spell',
     description:
       'For exams, court cases, competitions or any goal that matters to you. Strengthens focus and removes hidden obstacles. Brings luck and positive outcomes on the days that count.',
+    samples: [img.career, img.bayleaf, img.candle],
   },
 ];
 

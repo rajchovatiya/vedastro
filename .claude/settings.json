@@ -3,7 +3,11 @@
     "allow": [
       "PowerShell(npm run build 2>&1)",
       "PowerShell(npm install --no-audit --no-fund 2>&1)",
-      "PowerShell(Get-ChildItem assets -Recurse -File | Select-Object @{n='Path';e={$_.FullName.Replace\\(\\(Get-Location\\).Path+'\\\\',''\\)}},Length; Get-Content vercel.json, vite.config.ts, index.html)"
+      "PowerShell(Get-ChildItem assets -Recurse -File | Select-Object @{n='Path';e={$_.FullName.Replace\\(\\(Get-Location\\).Path+'\\\\',''\\)}},Length; Get-Content vercel.json, vite.config.ts, index.html)",
+      "PowerShell(npm run dev -- --host)",
+      "PowerShell(\\(Invoke-WebRequest http://localhost:5173/spells -UseBasicParsing\\).StatusCode; \\(Invoke-WebRequest http://localhost:5173/images/spells/love-spell.jpg -UseBasicParsing\\).StatusCode)",
+      "PowerShell($r = Invoke-RestMethod \"https://api.openverse.org/v1/images/?q=candle%20ritual&license=cc0,pdm&page_size=10&mature=false\"; $r.result_count; $r.results | Select-Object title, source, width, height, url | Format-Table -AutoSize | Out-String -Width 250)",
+      "PowerShell($r = Invoke-RestMethod \"https://unsplash.com/napi/search/photos?query=candle%20ritual&per_page=20\" -Headers @{ 'User-Agent'='Mozilla/5.0' }; $r.total; $r.results | Select-Object id, premium, plus, alt_description | Format-Table -AutoSize | Out-String -Width 250)"
     ]
   }
 }
