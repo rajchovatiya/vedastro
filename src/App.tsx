@@ -3,6 +3,7 @@ import { BookingProvider } from '@/components/booking/BookingProvider';
 import { BookingModal } from '@/components/booking/BookingModal';
 import { HomePage } from '@/pages/HomePage';
 import { ReviewsPage } from '@/pages/ReviewsPage';
+import { SpellsPage } from '@/pages/SpellsPage';
 import { StyleGuide } from '@/pages/StyleGuide';
 import { NotFound } from '@/pages/NotFound';
 
@@ -13,6 +14,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/reviews" element={<ReviewsPage />} />
+          <Route path="/spells" element={<SpellsPage />} />
           <Route path="/style-guide" element={<StyleGuide />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

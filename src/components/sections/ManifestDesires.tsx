@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
 import { useReveal } from '@/hooks/useReveal';
 import { useBooking } from '@/components/booking/BookingProvider';
@@ -47,6 +48,12 @@ export function ManifestDesires() {
                 <ChevronRight className="h-3.5 w-3.5" strokeWidth={2.5} />
               </span>
             </button>
+            <Link
+              to="/spells"
+              className="mt-4 block text-[0.82rem] font-medium text-gold-deep underline-offset-4 hover:text-plum hover:underline"
+            >
+              See photos of our spell work →
+            </Link>
           </div>
 
           {/* Right — spell cards */}

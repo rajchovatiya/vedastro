@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(npm run build 2>&1)",
+      "PowerShell(npm install --no-audit --no-fund 2>&1)",
+      "PowerShell(Get-ChildItem assets -Recurse -File | Select-Object @{n='Path';e={$_.FullName.Replace\\(\\(Get-Location\\).Path+'\\\\',''\\)}},Length; Get-Content vercel.json, vite.config.ts, index.html)"
+    ]
+  }
+}

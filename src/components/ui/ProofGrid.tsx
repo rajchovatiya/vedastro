@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
-import { X, ZoomIn, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useState } from 'react';
+import { ZoomIn } from 'lucide-react';
 import { cn } from '@/lib/cn';
 import { StarRating } from '@/components/ui/StarRating';
+import { Lightbox } from '@/components/ui/Lightbox';
 import { mockReviews } from '@/data/proof';
 
 function MockCard({ r }: { r: (typeof mockReviews)[number] }) {
@@ -46,22 +47,6 @@ export function ProofGrid({
   const [active, setActive] = useState<number | null>(null);
 
   const visible = images.slice(0, shown);
-
-  useEffect(() => {
-    if (active === null) return;
-    document.body.style.overflow = 'hidden';
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setActive(null);
-      if (e.key === 'ArrowRight') setActive((i) => (i === null ? i : (i + 1) % images.length));
-      if (e.key === 'ArrowLeft')
-        setActive((i) => (i === null ? i : (i - 1 + images.length) % images.length));
-    };
-    document.addEventListener('keydown', onKey);
-    return () => {
-      document.body.style.overflow = '';
-      document.removeEventListener('keydown', onKey);
-    };
-  }, [active, images.length]);
 
   if (images.length === 0) {
     return (
@@ -111,56 +96,12 @@ export function ProofGrid({
         </div>
       )}
 
-      {active !== null && images[active] && (
-        <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-plum/80 p-4 backdrop-blur-sm"
-          onClick={() => setActive(null)}
-        >
-          <button
-            type="button"
-            aria-label="Close"
-            className="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full bg-white/90 text-plum"
-            onClick={() => setActive(null)}
-          >
-            <X className="h-5 w-5" />
-          </button>
-          {images.length > 1 && (
-            <>
-              <button
-                type="button"
-                aria-label="Previous"
-                className="absolute left-3 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-plum sm:left-6"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setActive((i) => (i === null ? i : (i - 1 + images.length) % images.length));
-                }}
-              >
-                <ChevronLeft className="h-5 w-5" />
-              </button>
-              <button
-                type="button"
-                aria-label="Next"
-                className="absolute right-3 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-plum sm:right-6"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setActive((i) => (i === null ? i : (i + 1) % images.length));
-                }}
-              >
-                <ChevronRight className="h-5 w-5" />
-              </button>
-            </>
-          )}
-          <img
-            src={images[active]}
-            alt="Client review screenshot"
-            className="max-h-[90vh] max-w-[92vw] rounded-xl object-contain shadow-card-hover"
-            onClick={(e) => e.stopPropagation()}
-          />
-          <span className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-white/90 px-3 py-1 text-[0.75rem] font-medium text-plum">
-            {active + 1} / {images.length}
-          </span>
-        </div>
-      )}
+      <Lightbox
+        images={images}
+        index={active}
+        onChange={setActive}
+        alt="Client review screenshot"
+      />
     </>
   );
 }

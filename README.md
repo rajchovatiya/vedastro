@@ -41,6 +41,13 @@ They appear in the "Real Reviews From Real Clients" section automatically, newes
 To force a specific screenshot to the top, name it with a date/number prefix, e.g.
 `2026-09-10-01.jpg`.
 
+## Spell work page (`/spells`)
+
+Each spell has its own folder in **`assets/images/spell-work/<spell-id>/`** — drop 4–5 photos
+in and they show up on the page. Photos are shown in filename order (`1.jpg`, `2.jpg`, …).
+Spell names, descriptions and order are in `src/data/spellWork.ts` (the `id` must match the
+folder name). Share one spell directly with a client: `/spells#love-spell`.
+
 ## Replacing images
 
 Real photos live in `public/images/` (hero, astrology, tarot cards, spells, client avatars,
